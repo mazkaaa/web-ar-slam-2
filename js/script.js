@@ -21,25 +21,16 @@ const onxrloaded = () => {
       for (let j = -5; j <= 5; j += .5) {
         if (Math.round(i) != i && Math.round(j) != j) { continue }
         const sphere = new THREE.Mesh(
-          new THREE.SphereGeometry(.03, 8, 8), new THREE.MeshBasicMaterial({color: purple}))
+          new THREE.SphereGeometry(.03, 8, 8), new THREE.MeshBasicMaterial({color: mint}))
         sphere.position.set(i, 0, j)
         scene.add(sphere)
       }
     }
 
-    // Add one cone in each cardinal direction, and three ahead. Objects in the scene at height
-    // y=0 will appear to stick to physical surfaces.
-    const cones = [
-      {c: canary, p: [ 5, .5, 0]}, {c: mint, p: [-5, .5, 0]}, {c: cherry, p: [ 0, .5, 5]},
-      {c: cherry, p: [ 0, .5, -5]}, {c: canary, p: [-1, .5, -5]}, {c: mint, p: [ 1, .5, -5]}
-    ]
-    const shape = new THREE.ConeGeometry( 0.25, 1, 8 )
-    cones.forEach(({c, p}) => {
-      const cone = new THREE.Mesh(shape, new THREE.MeshBasicMaterial({color: c}))
-      cone.position.set(...p)
-      if (p[0] == 0 && p[2] == -5) { animateCone = cone } // save one cone for animation.
-      scene.add(cone)
-    })
+    var geometry = new THREE.BoxGeometry(1, 1, 1);
+    var material = new THREE.MeshBasicMaterial( {color: cherry} );
+    var cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
 
     // Set the initial camera position relative to the scene we just laid out. This must be at a
     // height greater than y=0.
