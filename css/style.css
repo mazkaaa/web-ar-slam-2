@@ -1,0 +1,9 @@
+div{
+    width: 480px;
+}
+button{
+    padding: 10px;
+}
+button.paused{
+    background: #757575;
+}
